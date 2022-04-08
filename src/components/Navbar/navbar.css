@@ -1,0 +1,26 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+}
+
+.menu {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.menu .menu__item {
+    color: inherit;
+}
+
+.menu .menu__item.menu__item--active {
+    color: #085bea;
+}
+
+.menu .menu__item:hover {
+    color: #085bea;
+}
