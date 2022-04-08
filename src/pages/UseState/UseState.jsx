@@ -9,12 +9,13 @@ const UseState = () => {
     // to mutate the state value, use setState
     setCounter((prevState) => prevState = counter + 1)
   }
+  
   return (
     <>
       <h1>UseState()</h1>
-      <div>
+      <h2>
         {counter}
-      </div>
+      </h2>
       <button onClick={increament}>Increament</button>
       <br />
       <div>
