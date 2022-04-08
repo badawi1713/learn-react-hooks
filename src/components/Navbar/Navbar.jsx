@@ -6,7 +6,7 @@ const Navbar = () => {
     const { pathname } = location
     return (
         <nav className='navbar'>
-            <h2 className='logo'>Hooks()</h2>
+            <h4 className='logo'>Hooks()</h4>
             <ul className='menu'>
                 {
                     navbarConfigs.map(item =>
