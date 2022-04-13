@@ -5,11 +5,15 @@ const UseState = () => {
   const [counter, setCounter] = useState(0)
   const [textfield, setTextfield] = useState('')
 
-  let increament = () => {
+  const increament = () => {
     // to mutate the state value, use setState
-    setCounter((prevState) => prevState = counter + 1)
+    setCounter((prevState) => prevState = prevState + 1)
   }
-  
+
+  const changeTextfield = (e) => {
+    setTextfield(e.target.value)
+  }
+
   return (
     <>
       <h1>UseState()</h1>
@@ -21,7 +25,7 @@ const UseState = () => {
       <div>
         <label>Textfield: {textfield}</label>
         <br />
-        <input onChange={e => setTextfield(e.target.value)} type={'text'} name='textfield' placeholder='Enter something...' />
+        <input onChange={changeTextfield} type={'text'} name='textfield' placeholder='Enter something...' />
       </div>
     </>
   )
