@@ -57,6 +57,21 @@ const UseEffect = () => {
     getData()
   // }, [count]) //will re render if count state was changed!
   }, [])
+
+  useEffect(
+    () => {
+    
+      const timer = setInterval(() => {
+        dispatch({ type: "COUNT_INCREMENT" })
+      }, 1000);
+
+      return function() {
+        console.log("Counter unmounted");
+        clearInterval(timer);
+      };
+    },
+    [count]
+  );
     
 
   // use effect dependency have 3 types:
