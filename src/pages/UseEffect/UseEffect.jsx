@@ -4,7 +4,7 @@ import { useEffect, useReducer } from 'react'
 const initialState = {
   data: [],
   error: false,
-  loading: true,
+  loading: false,
   count: 0
 }
 
@@ -16,7 +16,7 @@ const reducer = (state, action) => {
       }
     case "GET_DATA_LOADING":
       return {
-        ...state, error: false
+        ...state, error: false, loading: true
       }
     case "GET_DATA_SUCCESS":
       return {
@@ -55,7 +55,9 @@ const UseEffect = () => {
     }
 
     getData()
+  // }, [count]) //will re render if count state was changed!
   }, [])
+    
 
   // use effect dependency have 3 types:
   // 1. not using dependencies so use effect will always run
@@ -71,17 +73,17 @@ const UseEffect = () => {
   return (
     <div>
       <center>
-      <h3>Click Me</h3>
-      <button style={{padding: "10px 8px", width: "42px", margin: "10px 0", cursor: "pointer"}} onClick={countClickHandler}>{count}</button>
-     </center>
-      {loading && <p>Loading Content...</p>}
-      {error && <p>Something when wrong!</p>}
-      {data?.length === 0 && !loading ? <p>Data is empty</p> :
-        data?.map(item => (
-          <ol key={item.id}>
-            <li>{item.id}. Comments: {item.title}</li>
-          </ol>
-        ))
+        <h3>Click Me</h3>
+        <button style={{ padding: "10px 8px", width: "42px", margin: "10px 0", cursor: "pointer" }} onClick={countClickHandler}>{count}</button>
+      </center>
+      {loading ? <p>Loading Content...</p>
+        : error ? <p>Something when wrong!</p>
+          : data?.length === 0 && !loading ? <p>Data is empty</p> :
+            data?.map(item => (
+              <ol key={item.id}>
+                <li>{item.id}. Comments: {item.title}</li>
+              </ol>
+            ))
       }
     </div>
   )
