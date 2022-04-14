@@ -4,11 +4,16 @@ import { useEffect, useReducer } from 'react'
 const initialState = {
   data: [],
   error: false,
-  loading: true
+  loading: true,
+  count: 0
 }
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "COUNT_INCREMENT":
+      return {
+        ...state, count: state.count + 1
+      }
     case "GET_DATA_LOADING":
       return {
         ...state, error: false
@@ -29,7 +34,7 @@ const reducer = (state, action) => {
 const UseEffect = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { loading, data, error } = state
+  const { loading, data, error, count } = state
   // UseEffect is a function that only runs when the page is re-render
   useEffect(() => {
     const getData = async () => {
@@ -56,8 +61,19 @@ const UseEffect = () => {
   // 1. not using dependencies so use effect will always run
   // 2. with empty dependency [], use effect will only runs once
   // 3. with dependencies [dependency, ...], the use effect will run when the page is first time rendered and if the dependecies change! 
+
+  const countClickHandler = () => {
+    dispatch({
+      type: "COUNT_INCREMENT"
+    })
+  }
+
   return (
     <div>
+      <center>
+      <h3>Click Me</h3>
+      <button style={{padding: "10px 8px", width: "42px", margin: "10px 0", cursor: "pointer"}} onClick={countClickHandler}>{count}</button>
+     </center>
       {loading && <p>Loading Content...</p>}
       {error && <p>Something when wrong!</p>}
       {data?.length === 0 && !loading ? <p>Data is empty</p> :
